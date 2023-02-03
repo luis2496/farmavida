@@ -26,7 +26,7 @@
           <table class="table table-bordered">
             <thead>
               <tr>
-                <th>Código de la medicina</th>
+                <th>Código de Usuario</th>
                 <th>Codigo de la sucursal</th>
                 <th>Cedula</th>
                 <th>Nombre</th>
