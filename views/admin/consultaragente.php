@@ -18,7 +18,7 @@
   </center>
 
   <div class="container">
-    <caption>Medicinas</caption>
+    
     <form action="" method="post">
 
       <div class="panel panel-default">
@@ -73,11 +73,13 @@
                   <td>
                     <?php echo $agentes->telefono ?>
                   </td>
-                  <td><a href="<?php echo constant('URL') . 'agentes/verAgente/' . $agentes->codusuario; ?>">Agregar</a></td>
+                  <td><a href="<?php echo constant('URL') . 'agentes/verAgente/' . $agentes->codusuario; ?>">Actualizar</a></td>
                   <td><a href="<?php echo constant('URL') . 'agentes/eliminar/' . $agentes->codusuario; ?>">Eliminar</a></td>
                 </tr>
 
               <?php } ?>
+              <a href="<?php echo constant('URL') .'agentes/pantallaregistro/' ; ?>">Registrar</a>
+
             </tbody>
           </table>
         </div>

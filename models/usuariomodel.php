@@ -64,10 +64,10 @@ class UsuarioModel extends Model implements IModel{
 
     
 
-    public function get($cod){
+    public function get($codusuario){
         try{
             $query = $this->prepare('SELECT * FROM usuario WHERE codusuario = :codusuario');
-            $query->execute([ 'codusuario' => $cod]);
+            $query->execute([ 'codusuario' => $codusuario]);
             $user = $query->fetch(PDO::FETCH_ASSOC);
 
             $this->codusuario = $user['codusuario'];
@@ -110,7 +110,21 @@ class UsuarioModel extends Model implements IModel{
             return false;
         }
     }
-
+    public function existsCod($codusuario){
+        try{
+            $query = $this->prepare('SELECT codusuario FROM usuario WHERE codusuario = :codusuario');
+            $query->execute( ['codusuario' => $codusuario]);
+            
+            if($query->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }catch(PDOException $e){
+            echo $e;
+            return false;
+        }
+    }
     public function exists($username){
         try{
             $query = $this->prepare('SELECT username FROM usuario WHERE username = :username');

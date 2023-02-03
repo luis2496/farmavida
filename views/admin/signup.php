@@ -10,18 +10,22 @@
 <body>
 <?php include('panel.php');?>
     <?php $this->showMessages();?>
-    <div id="login-main">
+    <div >
     
         <form action="<?php echo constant('URL'); ?>signup/newUser" method="POST">
         <div></div>
             <h2>Registro de Usuarios</h2>
 
             <p>
-                <label for="username">Username</label>
+                <label for="codusuario">Codigo de usuario</label>
+                <input type="text" name="codusuario"  value="<?php echo $this->agentes->codusuario ?>" required>
+            </p>
+            <p>
+                <label for="username">Nombre de usuario</label>
                 <input type="text" name="username" id="username">
             </p>
             <p>
-                <label for="password">password</label>
+                <label for="password">Contraseña</label>
                 <input type="text" name="password" id="password">
             </p>
             <p>

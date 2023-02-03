@@ -7,6 +7,28 @@ class AgentesModel extends Model
     {
         parent::__construct();
     }
+
+    public function insert($datos){
+        // insertar
+        $query = $this->db->connect()->prepare('INSERT INTO usuario_agente (codusuario, codsucursal,cedula, nombre,apellido,direccion,telefono) VALUES(:codusuario, :codsucursal,:cedula, :nombre,:apellido,:direccion,:telefono)');
+        try{
+            $query->execute([
+                'codusuario' => $datos['codusuario'],
+                'codsucursal' => $datos['codsucursal'],
+                'cedula' => $datos['cedula'],
+                'nombre' => $datos['nombre'],
+                'apellido' => $datos['apellido'],
+                'direccion' => $datos['direccion'],
+                'telefono' => $datos['telefono'],
+
+               
+            ]);
+            return true;
+        }catch(PDOException $e){
+            return false;
+        }
+        
+    }
     public function get()
     {
         $items = [];

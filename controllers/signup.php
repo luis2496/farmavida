@@ -1,49 +1,56 @@
-
 <?php
 
 
 
-class Signup extends SessionController{
+class Signup extends SessionController
+{
 
-    function __construct(){
+    function __construct()
+    {
         parent::__construct();
     }
 
-    function render(){
+    function render()
+    {
         $this->view->errorMessage = '';
         $this->view->render('admin/signup');
     }
 
-    function newUser(){
-        if($this->existPOST(['username', 'password'])){
-            
+    function newUser()
+    {
+        if ($this->existPOST(['codusuario', 'username', 'password'])) {
+            $codusuario = $this->getPost('codusuario');
             $username = $this->getPost('username');
             $password = $this->getPost('password');
-            
+
             //validate data
-            if($username == '' || empty($username) || $password == '' || empty($password)){
-                
+            if ($codusuario == '' || empty($codusuario) || $username == '' || empty($username) || $password == '' || empty($password)) {
+
                 $this->redirect('signup', ['error' => Errors::ERROR_SIGNUP_NEWUSER_EMPTY]);
             }
 
-            $user = new UserModel();
+            $user = new UsuarioModel();
+            $user->setCod($codusuario);
             $user->setUsername($username);
             $user->setPassword($password);
             $user->setRole("user");
-            
-            if($user->exists($username)){
-               
+
+            if ($user->existsCod($codusuario)) {
+
                 $this->redirect('signup', ['error' => Errors::ERROR_SIGNUP_NEWUSER_EXISTS]);
                 //return;
-            }else if($user->save()){
-               
-                $this->redirect('', ['success' => Success::SUCCESS_SIGNUP_NEWUSER]);
-            }else{
-                
-                $this->redirect('signup', ['error' => Errors::ERROR_SIGNUP_NEWUSER]);
-            }
-        }else{
+            } else 
             
+            if ($user->save()) {
+
+               $this->redirect('', ['success' => Success::SUCCESS_SIGNUP_NEWUSER]);
+            } else
+             {
+
+               $this->redirect('signup', ['error' => Errors::ERROR_SIGNUP_NEWUSER]);
+            }
+        } else {
+
             $this->redirect('signup', ['error' => Errors::ERROR_SIGNUP_NEWUSER_EXISTS]);
         }
     }

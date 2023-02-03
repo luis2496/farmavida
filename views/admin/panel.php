@@ -25,7 +25,7 @@
 </head>
 <body>
 <div class="center-img">
-    <img src="images/Logo.jpg" width="270" height="135">
+    <img src="views/images/Logo.jpg" width="270" height="135">
 </div>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
