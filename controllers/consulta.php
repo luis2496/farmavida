@@ -1,6 +1,6 @@
 <?php
 
-class Consulta2 extends Controller
+class Consulta extends Controller
 {
 
     function __construct()
@@ -13,7 +13,7 @@ class Consulta2 extends Controller
     {
         $medicinas = $this->model->get();
         $this->view->medicina = $medicinas;
-        $this->view->render('agente/consulta');
+        $this->view->render('admin/consulta');
     }
 
     //MUESTRA EN OTRA VENTANA LOS DATOS DE LA MEDICINA SELECCIONADA
@@ -26,17 +26,17 @@ class Consulta2 extends Controller
        
         $this->view->medicina = $medicina;
         $this->view->mensaje = "";
-        $this->view->render('agente/detalle');
+        $this->view->render('admin/detalle');
     }
 
     function actualizarMedicina()
     { 
-      $codigo = $_POST['codMedicina'];
+         $codigo = $_POST['codMedicina'];
         $formula    = $_POST['formula'];
         $cantidad  = $_POST['cantidadUnidades'];
        
 
-        if($this->model->update(['codMedicina' => $codigo,'cantidadUnidades' => $cantidad] )){
+        if($this->model->update(['codMedicina' => $codigo,'formula' => $formula,'cantidadUnidades' => $cantidad] )){
             // actualizar alumno exito
             $medicina = new Medicina();
             $medicina->codigo = $codigo;
@@ -48,7 +48,7 @@ class Consulta2 extends Controller
            
             $this->view->mensaje = "Cantidad actualizada correctamente";
      
-            $this->view->render('agente/detalle');
+            $this->view->render('admin/detalle');
         }
         
         else

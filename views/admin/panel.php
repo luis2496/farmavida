@@ -29,20 +29,20 @@
 </div>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="#">FARMAVIDA</a>
+  <a class="navbar-brand" href="<?php echo constant('URL');?>admin">FARMAVIDA</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="">Inicio</a>
+        <a class="nav-link" href="<?php echo constant('URL');?>admin">Inicio</a>
       </li>
       <li class="nav-item">
-      <a class="nav-link" href="<?php echo constant('URL'); ?>medicina">Lista de Medicinas</a>
+      <a class="nav-link" href="<?php echo constant('URL'); ?>consulta">Lista de Medicinas</a>
       </li>
       <li class="nav-item">
-      <a class="nav-link" href="<?php echo constant('URL'); ?>sucursal">Sucursales</a>
+      <a class="nav-link" href="<?php echo constant('URL'); ?>sucursals">Sucursales</a>
       
       </li>
       <li class="nav-item">

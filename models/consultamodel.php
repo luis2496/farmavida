@@ -60,9 +60,10 @@ class ConsultaModel extends Model
     }
     public function update($item){
        
-            $query = $this->db->connect()->prepare('UPDATE medicina SET cantidadUnidades = :cantidadUnidades WHERE codMedicina = :codMedicina');
+            $query = $this->db->connect()->prepare('UPDATE medicina SET formula = :formula ,cantidadUnidades = :cantidadUnidades WHERE codMedicina = :codMedicina');
             try{  $query->execute([
                 'codMedicina' => $item['codMedicina'],
+                'formula' => $item['formula'],
                 'cantidadUnidades'   => $item['cantidadUnidades']
              
                 ]);
