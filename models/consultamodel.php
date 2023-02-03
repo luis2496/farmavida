@@ -12,12 +12,12 @@ class ConsultaModel extends Model
 
     public function insert($datos){
         // insertar
-        $query = $this->db->connect()->prepare('INSERT INTO medicina (codMedicina, formula, cantidadUnidades) VALUES(:codMedicina, :formula, :cantidadUnidades)');
+        $query = $this->db->connect()->prepare('INSERT INTO medicina (codMedicina, nombre, cantidad) VALUES(:codMedicina, :nombre, :cantidad)');
         try{
             $query->execute([
                 'codMedicina' => $datos['codMedicina'],
-                'formula' => $datos['formula'],
-                'cantidadUnidades' => $datos['cantidadUnidades']
+                'nombre' => $datos['nombre'],
+                'cantidad' => $datos['cantidad']
                
             ]);
             return true;
@@ -36,8 +36,8 @@ class ConsultaModel extends Model
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                 $item = new Medicina();
                 $item->codigo = $row['codMedicina'];
-                $item->formula = $row['formula'];
-                $item->cantidad = $row['cantidadUnidades'];
+                $item->nombre = $row['nombre'];
+                $item->cantidad = $row['cantidad'];
 
 
 
@@ -67,8 +67,8 @@ class ConsultaModel extends Model
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
 
                 $item->codigo = $row['codMedicina'];
-                $item->formula = $row['formula'];
-                $item->cantidad = $row['cantidadUnidades'];
+                $item->nombre = $row['nombre'];
+                $item->cantidad = $row['cantidad'];
             }
             return $item;
         } catch (PDOException $e) {
@@ -79,15 +79,31 @@ class ConsultaModel extends Model
     }
     public function update($item){
        
-            $query = $this->db->connect()->prepare('UPDATE medicina SET formula = :formula ,cantidadUnidades = :cantidadUnidades WHERE codMedicina = :codMedicina');
+            $query = $this->db->connect()->prepare('UPDATE medicina SET nombre = :nombre ,cantidad = :cantidad WHERE codMedicina = :codMedicina');
             try{  $query->execute([
                 'codMedicina' => $item['codMedicina'],
-                'formula' => $item['formula'],
-                'cantidadUnidades'   => $item['cantidadUnidades']
+                'nombre' => $item['nombre'],
+                'cantidad'   => $item['cantidad']
              
                 ]);
             return true;
         }catch(PDOException $e){
+            echo $e;
+            return false;
+        }
+    }
+    public function delete($cod)
+    {
+
+        $query = $this->db->connect()->prepare('DELETE FROM medicina   WHERE codMedicina = :cod');
+        try {
+            $query->execute([
+                'cod' => $cod,
+
+
+            ]);
+            return true;
+        } catch (PDOException $e) {
             echo $e;
             return false;
         }

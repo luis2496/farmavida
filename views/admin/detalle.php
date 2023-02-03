@@ -21,12 +21,12 @@
                 <input type="text" name="codMedicina"  value="<?php echo $this->medicina->codigo ?>" required>
             </p>
             <p>
-                <label for="formula">Formula</label><br>
-                <input type="text" name="formula"  value="<?php echo $this->medicina->formula ?>" required>
+                <label for="nombre">Nombre</label><br>
+                <input type="text" name="nombre"  value="<?php echo $this->medicina->nombre ?>" required>
             </p>
             <p>
-                <label for="cantidadUnidades">Cantidad</label><br>
-                <input type="text" name="cantidadUnidades" value="<?php echo $this->medicina->cantidad ?>" required>
+                <label for="cantidad">Cantidad</label><br>
+                <input type="text" name="cantidad" value="<?php echo $this->medicina->cantidad ?>" required>
             </p>
 
             <p>

@@ -21,12 +21,12 @@
                 <input type="text" name="codMedicina"   required>
             </p>
             <p>
-                <label for="formula">Nombre</label><br>
-                <input type="text" name="formula"   required>
+                <label for="nombre">Nombre</label><br>
+                <input type="text" name="nombre"   required>
             </p>
             <p>
-                <label for="cantidadUnidades">Cantidad</label><br>
-                <input type="text" name="cantidadUnidades"  required>
+                <label for="cantidad">Cantidad</label><br>
+                <input type="text" name="cantidad"  required>
             </p>
             
 

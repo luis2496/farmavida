@@ -3,7 +3,7 @@
 class Medicina
 {
     public $codigo;
-    public $formula;
+    public $nombre;
 
     public $cantidad;
 }

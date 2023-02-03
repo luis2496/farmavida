@@ -27,9 +27,9 @@
             <thead>
               <tr>
                 <th>Código de la medicina</th>
-                <th>Formula</th>
+                <th>Nombre</th>
 
-                <th>Cantidad/Unidades</th>
+                <th>Cantidad</th>
 
 
               </tr>
@@ -52,13 +52,13 @@
                     <?php echo $medicinas->codigo ?>
                   </td>
                   <td>
-                    <?php echo $medicinas->formula ?>
+                    <?php echo $medicinas->nombre ?>
                   </td>
                   <td>
                     <?php echo $medicinas->cantidad ?>
                   </td>
                   <td><a href="<?php echo constant('URL') . 'consulta/verMedicina/' . $medicinas->codigo; ?>">Actualizar</a></td>
-                  <td><a href="<?php echo constant('URL') . 'consulta/eliminarMedicina/' . $medicinas->codigo; ?>">Eliminar</a></td>
+                  <td><a href="<?php echo constant('URL') . 'consulta/eliminar/' . $medicinas->codigo; ?>">Eliminar</a></td>
                 </tr>
                 
 

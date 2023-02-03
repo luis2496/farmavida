@@ -23,11 +23,11 @@ class Consulta extends Controller
     function registrar(){
       
         $codigo = $_POST['codMedicina'];
-        $formula    = $_POST['formula'];
-        $cantidad  = $_POST['cantidadUnidades'];
+        $nombre    = $_POST['nombre'];
+        $cantidad  = $_POST['cantidad'];
        
 
-        if($this->model->insert(['codMedicina' => $codigo, 'formula' => $formula, 'cantidadUnidades' => $cantidad])){
+        if($this->model->insert(['codMedicina' => $codigo, 'nombre' => $nombre, 'cantidad' => $cantidad])){
             
            
             $this->view->mensaje = "Medicina Registrada correctamente";
@@ -58,21 +58,21 @@ class Consulta extends Controller
     function actualizarMedicina()
     { 
          $codigo = $_POST['codMedicina'];
-        $formula    = $_POST['formula'];
-        $cantidad  = $_POST['cantidadUnidades'];
+        $nombre    = $_POST['nombre'];
+        $cantidad  = $_POST['cantidad'];
        
 
-        if($this->model->update(['codMedicina' => $codigo,'formula' => $formula,'cantidadUnidades' => $cantidad] )){
+        if($this->model->update(['codMedicina' => $codigo,'nombre' => $nombre,'cantidad' => $cantidad] )){
             // actualizar alumno exito
             $medicina = new Medicina();
             $medicina->codigo = $codigo;
-            $medicina->formula = $formula;
+            $medicina->nombre = $nombre;
             $medicina->cantidad = $cantidad;
   
             
             $this->view->medicina = $medicina;
            
-            $this->view->mensaje = "Cantidad actualizada correctamente";
+            $this->view->mensaje = "Medicina actualizada correctamente";
      
             $this->view->render('admin/detalle');
         }
@@ -85,6 +85,21 @@ class Consulta extends Controller
       
        
        
+    }
+    function eliminar($param = null)
+    {
+        $codMedicina = $param[0];
+
+        if($this->model->delete($codMedicina)){
+           
+            $mensaje = "Medicina eliminada correctamente";
+        }else{
+            
+            $mensaje = "No se pudo eliminar la Medicina";
+        }
+       $this->render();
+        
+        echo $mensaje;
     }
 
 
