@@ -1,0 +1,44 @@
+{
+    "sites":[
+        {
+            "site" : "", 
+            "access" : "public", 
+            "role" : ""
+        },
+        {
+            "site" : "signup", 
+            "access" : "private", 
+            "role" : "admin"
+        },
+        {
+            "site" : "agenteconsulta", 
+            "access" : "private", 
+            "role" : "admin"
+        },
+        {
+            "site" : "agente", 
+            "access" : "private", 
+            "role" : "user"
+        },
+        {
+            "site" : "medicina", 
+            "access" : "private", 
+            "role" : "user"
+        },
+        {
+            "site" : "user", 
+            "access" : "private", 
+            "role" : "user"
+        },
+        {
+            "site" : "admin", 
+            "access" : "private", 
+            "role" : "admin"
+        }
+    ],
+
+    "default-sites":{
+        "user": "agente",
+        "admin": "admin"
+    }
+}
