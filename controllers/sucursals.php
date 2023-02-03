@@ -15,8 +15,14 @@ class Sucursals extends Controller
         $this->view->sucursal = $sucursals;
         $this->view->render('admin/consultasucursal');
     }
+
+    function pantallaregistro()
+    {
+        $this->view->mensaje = "";
+        $this->view->render('admin/registrarsucursal');
+    }
     function registrar(){
-      /*  
+      
         $codSucursal = $_POST['codSucursal'];
         $estado    = $_POST['estado'];
         $ciudad  = $_POST['ciudad'];
@@ -27,13 +33,13 @@ class Sucursals extends Controller
            
             $this->view->mensaje = "Sucursal Registrada correctamente";
          
-            $this->view->render('admin/consultasucursal');
+            $this->view->render('admin/registrarsucursal');
         }else
         
         {
             $this->view->mensaje = "La Sucursal ya está registrada";
-            $this->view->render('admin/consultasucursal');
-        }*/
+            $this->view->render('admin/registrarsucursal');
+        }
     }
     //MUESTRA EN OTRA VENTANA LOS DATOS DE LA MEDICINA SELECCIONADA
     function verSucursal($param = null)
@@ -88,10 +94,10 @@ class Sucursals extends Controller
     
             if($this->model->delete($codSucursal)){
                
-                $mensaje = "Agente eliminado correctamente";
+                $mensaje = "Sucursal eliminada correctamente";
             }else{
                 
-                $mensaje = "No se pudo eliminar el Agente";
+                $mensaje = "No se pudo eliminar la Sucursal";
             }
            $this->render();
             

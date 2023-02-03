@@ -68,8 +68,8 @@
 
               <?php } ?>
 
-              <button type="button" class="btn btn-success">Registrar</button>
-              <a href="<?php echo constant('URL') .'sucursals/registrar/' ; ?>">Registrar</a>
+              
+              <a href="<?php echo constant('URL') .'sucursals/pantallaregistro/' ; ?>">Registrar</a>
 
 
 

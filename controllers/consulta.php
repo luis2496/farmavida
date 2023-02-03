@@ -15,6 +15,32 @@ class Consulta extends Controller
         $this->view->medicina = $medicinas;
         $this->view->render('admin/consulta');
     }
+    function pantallaregistro()
+    {
+        $this->view->mensaje = "";
+        $this->view->render('admin/registrarmedicina');
+    }
+    function registrar(){
+      
+        $codigo = $_POST['codMedicina'];
+        $formula    = $_POST['formula'];
+        $cantidad  = $_POST['cantidadUnidades'];
+       
+
+        if($this->model->insert(['codMedicina' => $codigo, 'formula' => $formula, 'cantidadUnidades' => $cantidad])){
+            
+           
+            $this->view->mensaje = "Medicina Registrada correctamente";
+         
+            $this->view->render('admin/registrarmedicina');
+        }else
+        
+        {
+            $this->view->mensaje = "La Medicina ya está registrada";
+            $this->view->render('admin/registrarmedicina');
+        }
+    }
+
 
     //MUESTRA EN OTRA VENTANA LOS DATOS DE LA MEDICINA SELECCIONADA
     function verMedicina($param = null)

@@ -17,19 +17,19 @@
         <form action="<?php echo constant('URL'); ?>sucursals/actualizarSucursal" method="POST">
 
             <p>
-                <label for="codSucursal">Codigo de Medicina</label><br>
+                <label for="codSucursal">Codigo de la Sucursal</label><br>
                 <input type="text" name="codSucursal"  value="<?php echo $this->sucursal->codSucursal ?>" required>
             </p>
             <p>
-                <label for="estado">Formula</label><br>
+                <label for="estado">Estado</label><br>
                 <input type="text" name="estado"  value="<?php echo $this->sucursal->estado ?>" required>
             </p>
             <p>
-                <label for="ciudad">Cantidad</label><br>
+                <label for="ciudad">Ciudad</label><br>
                 <input type="text" name="ciudad" value="<?php echo $this->sucursal->ciudad ?>" required>
             </p>
             <p>
-                <label for="direccion">Cantidad</label><br>
+                <label for="direccion">Direccion</label><br>
                 <input type="text" name="direccion" value="<?php echo $this->sucursal->direccion ?>" required>
             </p>
 

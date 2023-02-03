@@ -104,7 +104,7 @@ class SucursalsModel extends Model
         $query = $this->db->connect()->prepare('DELETE FROM sucursal   WHERE codSucursal = :cod');
         try {
             $query->execute([
-                'codSucursal' => $cod,
+                'cod' => $cod,
 
 
             ]);

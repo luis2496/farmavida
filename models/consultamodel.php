@@ -7,6 +7,25 @@ class ConsultaModel extends Model
     {
         parent::__construct();
     }
+
+
+
+    public function insert($datos){
+        // insertar
+        $query = $this->db->connect()->prepare('INSERT INTO medicina (codMedicina, formula, cantidadUnidades) VALUES(:codMedicina, :formula, :cantidadUnidades)');
+        try{
+            $query->execute([
+                'codMedicina' => $datos['codMedicina'],
+                'formula' => $datos['formula'],
+                'cantidadUnidades' => $datos['cantidadUnidades']
+               
+            ]);
+            return true;
+        }catch(PDOException $e){
+            return false;
+        }
+        
+    }
     public function get()
     {
         $items = [];

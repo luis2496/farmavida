@@ -18,7 +18,7 @@
   </center>
 
   <div class="container">
-    <caption>Medicinas</caption>
+ 
     <form action="" method="post">
 
       <div class="panel panel-default">
@@ -63,6 +63,9 @@
                 
 
               <?php } ?>
+
+              <a href="<?php echo constant('URL') .'consulta/pantallaregistro/' ; ?>">Registrar</a>
+
             </tbody>
           </table>
         </div>
