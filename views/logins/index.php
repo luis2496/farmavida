@@ -28,7 +28,7 @@
                 <div id="login-main">
                     <form action="<?php echo constant('URL'); ?>logins/authenticate" method="POST">
                         <div class="text-danger"><?php (isset($this->errorMessage))?  $this->errorMessage : '' ?></div>
-                        <h2 class="text-center mb-4">Iniciar sesións</h2>
+                        <h2 class="text-center mb-4">Iniciar sesión</h2>
 
                         <div class="form-group">
                             <label for="username">Usuario</label>
