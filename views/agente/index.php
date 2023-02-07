@@ -1,3 +1,6 @@
+<?php
+ $user                   = $this->d['user'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +15,7 @@
     <?php $this->showMessages();?>
     <div id="Agente">
         
-        <h1>AGENTE</h1>
+        <h1>AGENTE <?php echo $user->getCod() ?></h1>
     </div>
 </body>
 </html>

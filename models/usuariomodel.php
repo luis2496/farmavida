@@ -3,10 +3,11 @@
 class UsuarioModel extends Model implements IModel{
 
     private $codusuario;
+    private $codsucursal;
     private $username;
     private $password;
     private $role;
-    
+    private $nombres;
    
 
     public function __construct(){
@@ -14,9 +15,11 @@ class UsuarioModel extends Model implements IModel{
         
         
         $this->codusuario = '';
+        $this->codsucursal = '';
         $this->username = '';
         $this->password = '';
         $this->role = '';
+        $this->nombres='';
        
        
      
@@ -46,12 +49,14 @@ class UsuarioModel extends Model implements IModel{
 
     public function save(){
         try{
-            $query = $this->prepare('INSERT INTO usuario (codusuario,username, password, role) VALUES(:codusuario,:username, :password, :role )');
+            $query = $this->prepare('INSERT INTO usuario (codusuario,codsucursal,username, password, role,nombres) VALUES(:codusuario,:codsucursal,:username, :password, :role,:nombres )');
             $query->execute([
                 'codusuario'  => $this->codusuario, 
+                'codsucursal'  => $this->codsucursal, 
                 'username'  => $this->username, 
                 'password'  => $this->password,
                 'role'      => $this->role,
+                'nombres'      => $this->nombres,
               
                
                 ]);
@@ -71,9 +76,11 @@ class UsuarioModel extends Model implements IModel{
             $user = $query->fetch(PDO::FETCH_ASSOC);
 
             $this->codusuario = $user['codusuario'];
+            $this->codsucursal = $user['codsucu'];
             $this->username = $user['username'];
             $this->password = $user['password'];
             $this->role = $user['role'];
+            $this->nombres = $user['nombres'];
            
            
 
@@ -96,11 +103,14 @@ class UsuarioModel extends Model implements IModel{
 
     public function update(){
         try{
-            $query = $this->prepare('UPDATE usuario SET username = :username, password = :password WHERE codusuario = :codusuario');
+            $query = $this->prepare('UPDATE usuario SET codsucursal=:codsucursal,username = :username, password = :password ,role=:role,nombres=:nombres WHERE codusuario = :codusuario');
             $query->execute([
                 'codusuario'        => $this->codusuario,
+                'codsucursal'        => $this->codsucursal,
                 'username' => $this->username, 
                 'password' => $this->password,
+                'role' => $this->role,
+                'nombres' => $this->nombres,
                 
                 
                 ]);
@@ -164,16 +174,18 @@ class UsuarioModel extends Model implements IModel{
         }
     }
     public function setCod($codusuario){             $this->codusuario = $codusuario;}
+    public function setcodsucursal($codsucursal){             $this->codsucursal = $codsucursal;}
     public function setRole($role){         $this->role = $role;}
+    public function setNombres($nombres){         $this->nombres = $nombres;}
    
   
 
     public function getCod(){        return $this->codusuario;}
+    public function getcodsucursal(){        return $this->codsucursal;}
     public function getUsername(){  return $this->username;}
     public function getPassword(){  return $this->password;}
     public function getRole(){      return $this->role;}
-   
-   
+    public function getNombres(){        return $this->nombres;}
 	/**
 	 * @return mixed
 	 */

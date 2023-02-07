@@ -8,6 +8,10 @@ class AgentesModel extends Model
         parent::__construct();
     }
 
+
+
+
+
     public function insert($datos){
         // insertar
         $query = $this->db->connect()->prepare('INSERT INTO usuario_agente (codusuario, codsucursal,cedula, nombre,apellido,direccion,telefono) VALUES(:codusuario, :codsucursal,:cedula, :nombre,:apellido,:direccion,:telefono)');
@@ -62,7 +66,7 @@ class AgentesModel extends Model
 
     public function getById($codusuario)
     {
-        $item = new Agentes();
+        $item = new Agente();
         $query = $this->db->connect()->prepare('SELECT * FROM usuario_agente WHERE codusuario = :codusuario');
 
         try {

@@ -13,6 +13,8 @@
     <div id="admi">
         
         <h1>ADMINISTRADOR</h1>
+       
+
     </div>
 </body>
 </html>

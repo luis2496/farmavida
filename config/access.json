@@ -11,9 +11,9 @@
             "role" : "admin"
         },
         {
-            "site" : "agenteconsulta", 
+            "site" : "sucursalmedicina", 
             "access" : "private", 
-            "role" : "admin"
+            "role" : "user"
         },
         {
             "site" : "agente", 

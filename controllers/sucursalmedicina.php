@@ -1,19 +1,44 @@
 <?php
-
-class SucursalMedicina extends Controller
+class SucursalMedicina extends SessionController
 {
+    private $user;
 
     function __construct()
     {
         parent::__construct();
+        $this->user = $this->getUserSessionData();
         $this->view->medicinas = [];
     }
 
     function render()
-    {
-        $medicinass = $this->model->get();
-        $this->view->medicinas = $medicinass;
-        $this->view->render('agente/consultarmedicinas');
+    { 
+        
+        //$medicina = $this->model->get();
+        //$this->view->medicinas = $medicina;
+        
+        $this->view->render('agente/consultarmedicinas', [
+            'user'                 => $this->user,
+            'medicinas' => $this->getListSucursal()
+        ]);
+    }
+
+
+    private function getListSucursal(){
+        $res = [];
+        $sucursalmedicinamodel = new SucursalMedicinaModel();
+        $medicinas = $sucursalmedicinamodel->getAll($this->user->getCod());
+
+        foreach ($medicinas as $medicina) {
+          //  array_push($res, $medicina->getcodmedicina());
+          $sucursalArray = [];
+          $sucursalArray['medicina'] = $medicina;
+         
+          array_push($res, $sucursalArray);
+
+        }
+      //  $res = array_values(array_unique($res));
+
+        return $res;
     }
 
     //MUESTRA EN OTRA VENTANA LOS DATOS DE LA MEDICINA SELECCIONADA
@@ -28,6 +53,11 @@ class SucursalMedicina extends Controller
         $this->view->mensaje = "";
         $this->view->render('agente/registrarcantidad');
     }
+
+
+
+
+
 
     function actualizarMedicina()
     {

@@ -1,3 +1,7 @@
+<?php
+$user = $this->d['user'];
+$medicinas = $this->d['medicinas'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +16,11 @@
 </head>
 
 <body>
+
   <?php include('panel.php'); ?>
+  <h1>AGENTE
+    <?php echo $user->getCod() ?>
+  </h1>
   <center>
     <h3>Ingresar cantidad de medicinas</h3>
   </center>
@@ -36,29 +44,35 @@
             </thead>
             <tbody>
               <?php
-              include_once 'models/medicinas.php';
+
               // Recorrer los resultados y agregarlos a la tabla
+              //$options = $medicinas;
               
-              foreach ($this->medicinas as $row) {
-                $medicinass = new Medicinas();
-                $medicinass = $row;
+              foreach ($medicinas as $medicina) {
+                // $medicinass = new SucursalMedicinaModel();
+                //  $medicinass = $row;
+              
+             //   echo "<option value=$row >" . $row . "</option>";
+
 
 
 
                 ?>
 
-                <tr>
-                  <td>
-                    <?php echo $medicinass->codigomedicina ?>
+                <tr >
+                  <td >
+                  <?php echo $medicina['medicina']->getcodmedicina() ?>
                   </td>
-                  <td>
-                    <?php echo $medicinass->codigosucursal ?>
+                  <td >
+                  <?php echo $medicina['medicina']->getcodigosucursal() ?>
                   </td>
-                  <td>
-                    <?php echo $medicinass->cantidad ?>
+                  <td >
+                  <?php echo $medicina['medicina']->getcantidad() ?>
                   </td>
-                  <td><a href="<?php echo constant('URL') . 'sucursalmedicina/verMedicina/' . $medicinass->codigomedicina; ?>">Agregar</a></td>
-                 
+                  <td><a
+                      href="<?php echo constant('URL') . 'sucursalmedicina/verMedicina/' . $medicina['medicina']->getcodmedicina(); ?>">Agregar</a>
+                  </td>
+
                 </tr>
 
               <?php } ?>
@@ -67,6 +81,7 @@
         </div>
       </div>
   </div>
+
 
 </body>
 

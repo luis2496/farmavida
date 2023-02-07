@@ -22,7 +22,7 @@ class Agentes extends Controller
         $this->view->mensaje = "";
         $this->view->render('admin/registraragente');
     }
-      
+       
     function registrar(){
       
         $codusuario = $_POST['codusuario'];
