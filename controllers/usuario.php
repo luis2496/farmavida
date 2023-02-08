@@ -2,11 +2,12 @@
 
 class Usuario extends SessionController
 {
-    
+    private $user;
     function __construct()
     {
         parent::__construct();
-        $this->view->agente = [];
+        $this->user = $this->getUserSessionData();
+        $this->view->agentes = [];
     }
 
     function render()
@@ -14,7 +15,7 @@ class Usuario extends SessionController
        // $medicinas = $this->model->get();
         //$this->view->medicina = $medicinas;
         $this->view->render('admin/consultaragente', [
-            
+          
             'agentes' => $this->getListAgentes()
         ]);
     }
@@ -40,6 +41,7 @@ class Usuario extends SessionController
 
     function verAgente($param = null)
     {
+        
         // var_dump($param);
         $codusuario = $param[0];
         $agentes = $this->model->getById($codusuario);
@@ -49,28 +51,27 @@ class Usuario extends SessionController
         $this->view->mensaje = "";
         $this->view->render('admin/actualizarAgente');
     }
-    function actualizarAgente()
+
+    function actualizar()
     {
         $codusuario = $_POST['codusuario'];
         $codsucursal = $_POST['codsucu'];
         $username = $_POST['username'];
         $password = $_POST['password'];
-       // $role = $_POST['role'];
-        $nombres = $_POST['nombres'];
+        $role = $_POST['role'];
        
+        $nombres = $_POST['nombres'];
 
 
-        if ($this->model->update(['codusuario' => $codusuario, 'codsucu' => $codsucursal, 'username' => $username,'password' => $password,'nombres' => $nombres])) {
-            // actualizar agente exito
-            $agentes = new Agente();
-          
+        if ($this->model->update(['codusuario' => $codusuario, 'codsucu' => $codsucursal, 'username' => $username, 'password' => $password, 'role' => $role, 'nombres' => $nombres])) {
+            // actualizar alumno exito
+            $agentes = new Agentes();
             $agentes->codusuario = $codusuario;
             $agentes->codsucursal = $codsucursal;
             $agentes->username = $username;
             $agentes->password = $password;
-           // $agentes->role = $role;
+            $agentes->role = $role;
             $agentes->nombres = $nombres;
-            
 
 
             $this->view->agentes = $agentes;
@@ -84,6 +85,7 @@ class Usuario extends SessionController
         }
 
     }
+    
 
 
     function delete($params){

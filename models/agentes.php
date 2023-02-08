@@ -1,6 +1,6 @@
 <?php
 
-class Agente
+class Agentes
 {
     public $codusuario;
     public $codsucursal;

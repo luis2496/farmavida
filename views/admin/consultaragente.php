@@ -43,7 +43,7 @@ $agentes = $this->d['agentes'];
             </thead>
             <tbody>
               <?php
-              include_once 'models/agente.php';
+              include_once 'models/agentes.php';
               // Recorrer los resultados y agregarlos a la tabla
               
               foreach ($agentes as $agente) {

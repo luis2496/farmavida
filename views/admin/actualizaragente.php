@@ -15,12 +15,14 @@
 
         <div class="center"><?php echo $this->mensaje; ?></div>
 
-        <form action="<?php echo constant('URL'); ?>usuario/actualizarAgente" method="POST">
+        <form action="<?php echo constant('URL'); ?>usuario/actualizar" method="POST">
 
            <p>
             <label for="codusuario">Codigo de Usuario</label><br>
-                <input type="text" name="codusuario" value=" <?php echo $this->agentes->codusuario ?>" required>
+                <input type="text" name="codusuario" value="<?php echo $this->agentes->codusuario ?>" required>
             </p>
+
+
             <p>
                 <label for="codsucu">Codigo de la Sucursal</label><br>
                 <input type="text" name="codsucu" value="<?php echo $this->agentes->codsucursal ?>" required>

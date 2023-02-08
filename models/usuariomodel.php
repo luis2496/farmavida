@@ -1,5 +1,5 @@
 <?php
-require_once 'agente.php';
+include_once 'agentes.php';
 class UsuarioModel extends Model implements IModel
 {
 
@@ -51,7 +51,7 @@ class UsuarioModel extends Model implements IModel
 
     public function getById($codusuario)
     {
-        $item = new Agente();
+        $item = new Agentes();
         $query = $this->db->connect()->prepare('SELECT * FROM usuario WHERE codusuario = :codusuario');
 
         try {
@@ -73,9 +73,46 @@ class UsuarioModel extends Model implements IModel
         }
 
     }
-    public function update($item)
+
+    public function update($item){
+       
+        $query = $this->db->connect()->prepare('UPDATE usuario SET codsucu = :codsucu ,username = :username,password = :password,nombres = :nombres WHERE codusuario = :codusuario');
+        try{  $query->execute([
+            'codusuario' => $item['codusuario'],
+            'codsucu' => $item['codsucu'],
+            'username' => $item['username'],
+            'password' => $item['password'],
+           
+            'nombres' => $item['nombres']
+           
+         
+            ]);
+        return true;
+    }catch(PDOException $e){
+        echo $e;
+        return false;
+    }
+}
+    public function actualizar(){
+        try{
+            $query = $this->prepare('UPDATE usuario SET codsucu = :codsucu, username = :username, password = :password, nombres = :nombres WHERE codusuario = :codusuario');
+            $query->execute([
+                'codusuario'        => $this->codusuario,
+                'codsucu' => $this->codsucursal, 
+                'username' => $this->username,
+                'password' => $this->password,
+                'nombres' => $this->nombres
+                
+                ]);
+            return true;
+        }catch(PDOException $e){
+            echo $e;
+            return false;
+        }
+    }
+   /* public function update($item)
     {
-        
+
         $query = $this->db->connect()->prepare('UPDATE usuario SET codsucu = :codsucu, username = :username, password = :password, nombres = :nombres WHERE codusuario = :codusuario');
         try {
             $query->execute([
@@ -92,7 +129,7 @@ class UsuarioModel extends Model implements IModel
             echo $e;
             return false;
         }
-    }
+    }*/
 
 
 
