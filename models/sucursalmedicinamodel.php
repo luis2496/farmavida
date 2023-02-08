@@ -1,5 +1,6 @@
 <?php
 include_once 'models/medicinas.php';
+//include_once 'models/listamedicinamodel.php';
 
 class SucursalMedicinaModel extends Model
 {
@@ -110,6 +111,10 @@ class SucursalMedicinaModel extends Model
         }
 
     }
+    
+
+
+   
     public function update($item)
     {
 

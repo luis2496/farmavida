@@ -1,11 +1,13 @@
 <?php
 
-class Sucursals extends Controller
-{
+class Sucursals extends SessionController
+{    private $user;
 
     function __construct()
     {
         parent::__construct();
+                $this->user = $this->getUserSessionData();
+
         $this->view->sucursal = [];
     }
 
@@ -13,7 +15,34 @@ class Sucursals extends Controller
     {
         $sucursals = $this->model->get();
         $this->view->sucursal = $sucursals;
-        $this->view->render('admin/consultasucursal');
+        $this->view->render('admin/consultasucursal', [
+            'user'                 => $this->user
+           
+        ]);;
+    }
+    function verlistaMedicinas($param = null)
+    {
+       
+        $this->view->render('admin/listamedicinas');
+    }
+
+    private function getListmedicinas($codsucursal){
+        $res = [];
+       
+        $sucursalmodel = new SucursalsModel();
+        $medicinas = $sucursalmodel->getAlls($codsucursal);
+
+        foreach ($medicinas as $medicina) {
+          //  array_push($res, $medicina->getcodmedicina());
+          $sucursalArray = [];
+          $sucursalArray['medicina'] = $medicina;
+         
+          array_push($res, $sucursalArray);
+
+        }
+      //  $res = array_values(array_unique($res));
+
+        return $res;
     }
 
     function pantallaregistro()

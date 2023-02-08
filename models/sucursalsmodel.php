@@ -2,12 +2,23 @@
 include_once 'models/sucursal.php';
 class SucursalsModel extends Model
 {
+    private $codSucursal;
+    
 
     public function __construct()
     {
         parent::__construct();
     }
 
+    public function setcodigosucursal($codSucursal)
+    {
+        $this->codSucursal = $codSucursal;
+    }
+    public function getcodigosucursal()
+    {
+        return $this->codSucursal;
+    }
+   
 
 
 
@@ -27,6 +38,27 @@ class SucursalsModel extends Model
         }
         
         
+    }
+    public function getAlls($codsucu){
+        $items = [];
+        try{
+            $query = $this->prepare('SELECT medicina.codMedicina,nombre,medicina.cantidad   FROM medicina  INNER JOIN sucursal_medicina  WHERE medicina.codMedicina = sucursal_medicina.codMedicina AND sucursal_medicina.codSucursal =:codsucu  ORDER BY medicina.codMedicina');
+            $query->execute(["codsucu" => $codsucu]);
+
+
+            while($row = $query->fetch(PDO::FETCH_ASSOC)){
+                $item = new ListaMedicinaModel();
+                $item->codMedicina = $row['codMedicina'];
+                $item->nombre = $row['nombre'];
+                $item->cantidad = $row['cantidad'];
+             
+            }
+
+            return $items;
+
+        }catch(PDOException $e){
+            echo $e;
+        }
     }
 
 

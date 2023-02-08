@@ -40,6 +40,7 @@ class SucursalMedicina extends SessionController
 
         return $res;
     }
+ 
 
     //MUESTRA EN OTRA VENTANA LOS DATOS DE LA MEDICINA SELECCIONADA
     function verMedicina($param = null)
@@ -54,7 +55,7 @@ class SucursalMedicina extends SessionController
         $this->view->render('agente/registrarcantidad');
     }
 
-
+   
 
 
 

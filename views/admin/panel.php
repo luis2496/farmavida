@@ -39,8 +39,12 @@
         <a class="nav-link" href="<?php echo constant('URL');?>admin">Inicio</a>
       </li>
       <li class="nav-item">
-      <a class="nav-link" href="<?php echo constant('URL'); ?>consulta">Lista de Medicinas</a>
+      <li class="nav-item">
+      <a class="nav-link" href="<?php echo constant('URL'); ?>consulta">Medicinas</a>
       </li>
+      <a class="nav-link" href="<?php echo constant('URL'); ?>listamedicina">Lista de Medicinas</a>
+      </li>
+      
       <li class="nav-item">
       <a class="nav-link" href="<?php echo constant('URL'); ?>sucursals">Sucursales</a>
       

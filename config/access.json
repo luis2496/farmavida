@@ -26,9 +26,19 @@
             "role" : "admin"
         },
         {
+            "site" : "listamedicina", 
+            "access" : "private", 
+            "role" : "admin"
+        },
+        {
             "site" : "medicina", 
             "access" : "private", 
             "role" : "user"
+        },
+        {
+            "site" : "sucursals", 
+            "access" : "private", 
+            "role" : "admin"
         },
         
         {
