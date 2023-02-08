@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,36 +15,33 @@
 
         <div class="center"><?php echo $this->mensaje; ?></div>
 
-        <form action="<?php echo constant('URL'); ?>agentes/actualizarAgente" method="POST">
+        <form action="<?php echo constant('URL'); ?>usuario/actualizarAgente" method="POST">
 
            <p>
             <label for="codusuario">Codigo de Usuario</label><br>
-                <input type="text" name="codusuario"  value="<?php echo $this->agentes->codusuario ?>" required>
+                <input type="text" name="codusuario" value=" <?php echo $this->agentes->codusuario ?>" required>
             </p>
             <p>
-                <label for="codsucursal">Codigo de la Sucursal</label><br>
-                <input type="text" name="codsucursal"  value="<?php echo $this->agentes->codsucursal ?>" required>
+                <label for="codsucu">Codigo de la Sucursal</label><br>
+                <input type="text" name="codsucu" value="<?php echo $this->agentes->codsucursal ?>" required>
             </p>
             <p>
-                <label for="cedula">Cedula</label><br>
-                <input type="text" name="cedula"  value="<?php echo $this->agentes->cedula ?>" required>
+                <label for="username">Nombre de usuario</label><br>
+                <input type="text" name="username"  value="<?php echo $this->agentes->username ?>" required>
             </p>
             <p>
-                <label for="nombre">Nombre</label><br>
-                <input type="text" name="nombre" value="<?php echo $this->agentes->nombre ?>" required>
+                <label for="password">Contrasenna</label><br>
+                <input type="text" name="password" value="<?php echo $this->agentes->password ?>" required>
             </p>
             <p>
-                <label for="apellido">Apellido</label><br>
-                <input type="text" name="apellido" value="<?php echo $this->agentes->apellido ?>" required>
+                <label for="role">rol</label><br>
+                <input type="text" name="role" value="<?php echo $this->agentes->role ?>" required>
             </p>
             <p>
-                <label for="direccion">Direccion</label><br>
-                <input type="text" name="direccion" value="<?php echo $this->agentes->direccion ?>" required>
+                <label for="nombres">Nombres y Apellidos</label><br>
+                <input type="text" name="nombres" value="<?php echo $this->agentes->nombres ?>" required>
             </p>
-            <p>
-                <label for="telefono">Telefono</label><br>
-                <input type="text" name="telefono" value="<?php echo $this->agentes->telefono ?>" required>
-            </p>
+        
 
             <p>
             <input type="submit" value="Actualizar">

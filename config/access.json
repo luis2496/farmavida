@@ -21,15 +21,16 @@
             "role" : "user"
         },
         {
+            "site" : "usuario", 
+            "access" : "private", 
+            "role" : "admin"
+        },
+        {
             "site" : "medicina", 
             "access" : "private", 
             "role" : "user"
         },
-        {
-            "site" : "user", 
-            "access" : "private", 
-            "role" : "user"
-        },
+        
         {
             "site" : "admin", 
             "access" : "private", 

@@ -1,3 +1,6 @@
+<?php
+$agentes = $this->d['agentes'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,11 +31,11 @@
               <tr>
                 <th>Código de Usuario</th>
                 <th>Codigo de la sucursal</th>
-                <th>Cedula</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>direccion</th>
-                <th>telefono</th>
+              
+                <th>Nombre de usuario</th>
+                <th>Rol</th>
+                <th>Nombres y apellidos</th>
+                
               
 
 
@@ -43,9 +46,8 @@
               include_once 'models/agente.php';
               // Recorrer los resultados y agregarlos a la tabla
               
-              foreach ($this->agente as $row) {
-                $agentes = new Agente();
-                $agentes = $row;
+              foreach ($agentes as $agente) {
+               
 
 
 
@@ -53,32 +55,27 @@
 
                 <tr>
                   <td>
-                    <?php echo $agentes->codusuario ?>
+                  <?php echo $agente['agente']->getCod() ?>
                   </td>
                   <td>
-                    <?php echo $agentes->codsucursal ?>
+                  <?php echo $agente['agente']->getcodsucursal() ?>
                   </td>
                   <td>
-                    <?php echo $agentes->cedula ?>
+                  <?php echo $agente['agente']->getUsername() ?>
                   </td>
                   <td>
-                    <?php echo $agentes->nombre ?>
+                  <?php echo $agente['agente']->getRole() ?>
                   </td>
                   <td>
-                    <?php echo $agentes->apellido ?>
+                  <?php echo $agente['agente']->getNombres() ?>
                   </td>
-                  <td>
-                    <?php echo $agentes->direccion ?>
-                  </td>
-                  <td>
-                    <?php echo $agentes->telefono ?>
-                  </td>
-                  <td><a href="<?php echo constant('URL') . 'agentes/verAgente/' . $agentes->codusuario; ?>">Actualizar</a></td>
-                  <td><a href="<?php echo constant('URL') . 'agentes/eliminar/' . $agentes->codusuario; ?>">Eliminar</a></td>
+             
+                  <td><a href="<?php echo constant('URL') . 'usuario/verAgente/' . $agente['agente']->getCod(); ?>">Actualizar</a></td>
+                  <td><a href="<?php echo constant('URL') . 'usuario/delete/' . $agente['agente']->getCod(); ?>">Eliminar</a></td>
                 </tr>
 
               <?php } ?>
-              <a href="<?php echo constant('URL') .'agentes/pantallaregistro/' ; ?>">Registrar</a>
+              <a href="<?php echo constant('URL') .'signup/' ; ?>">Registrar</a>
 
             </tbody>
           </table>

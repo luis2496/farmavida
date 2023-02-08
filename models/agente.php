@@ -4,10 +4,12 @@ class Agente
 {
     public $codusuario;
     public $codsucursal;
-    public $cedula;
-    public $nombre;
-    public $apellido;
-    public $direccion;
-    public $telefono;
+    public $username;
+    public $password;
+    public $role;
+    public $nombres;
+
+
+    
 }
 ?>

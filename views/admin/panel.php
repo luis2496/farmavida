@@ -46,7 +46,7 @@
       
       </li>
       <li class="nav-item">
-      <a class="nav-link" href="<?php echo constant('URL'); ?>agentes">Agentes</a>
+      <a class="nav-link" href="<?php echo constant('URL'); ?>usuario">Agentes</a>
    
       </li>
       <li class="nav-item">

@@ -5,7 +5,7 @@
         public function getAll();
         public function get($id);
         public function delete($id);
-        public function update();
+        public function update($item);
         public function from($array);
     }
 ?>
