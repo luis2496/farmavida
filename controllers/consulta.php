@@ -1,20 +1,136 @@
 <?php
 
-class Consulta extends Controller
-{
+class Consulta extends SessionController{
 
+    private $user;
+   
+   
     function __construct()
     {
         parent::__construct();
+        $this->user = $this->getUserSessionData();
+      
         $this->view->medicina = [];
     }
 
     function render()
-    {
+    {    
+      
+        //$medicinas = $this->model->get();
         $medicinas = $this->model->get();
-        $this->view->medicina = $medicinas;
-        $this->view->render('admin/consulta');
+       $this->view->medicina = $medicinas;
+        $this->view->render('admin/consulta',[
+            'user' => $this->user,
+            'medicinas' => $this->getListMedicinas(),
+           'sucursals' => $this->getListSucursal()
+           //'medicinas' => $this->getListMedicinas()
+        ]);
     }
+
+
+
+    
+    function pantallaregistroporSucursal()
+    {
+        $this->view->mensaje = "";
+        $this->view->render('admin/registrarporsucursal',[
+            'user' => $this->user,
+            'medicinas' => $this->getListMedicinas(),
+           'sucursals' => $this->getListSucursal()
+           //'medicinas' => $this->getListMedicinas()
+        ]);
+    }
+    function registrarmedicinassucursal(){
+      
+        $codigo = $_POST['codMedicina'];
+        $codSucursal = $_POST['codSucursal'];
+        $cantidad    = $_POST['cantidad'];
+      
+       
+
+        if($this->model->registrarmedicinassucursal(['codMedicina' => $codigo,'codSucursal' => $codSucursal ,'cantidad' => $cantidad])){
+
+           // $this->model->actualizarinventario(['codMedicina' => $codigo,'cantidad' => $cantidad]);
+           $this->model->Sumarinventario(['codMedicina' => $codigo,'cantidad' => $cantidad]);
+           
+           $this->view->mensaje = "Medicina Registrada correctamente";
+         
+            $this->view->render('admin/registrarporsucursal',[
+               
+                'medicinas' => $this->getListMedicinas(),
+               'sucursals' => $this->getListSucursal()
+               //'medicinas' => $this->getListMedicinas()
+            ]);
+        }else
+        
+        {
+            $this->view->mensaje = "La Medicina ya está registrada";
+            $this->view->render('admin/registrarporsucursal',[
+               
+                'medicinas' => $this->getListMedicinas(),
+               'sucursals' => $this->getListSucursal()
+               //'medicinas' => $this->getListMedicinas()
+            ]);
+        }
+    }
+
+    private function getListMedicinas(){
+        $res = [];
+        $listamedicinasucursal = new ConsultaModel();
+        $medicinas = $listamedicinasucursal->getAllMedicina();
+
+        foreach ($medicinas as $medicina) {
+            array_push($res, $medicina->getcodMedicina());
+        }
+        $res = array_values(array_unique($res));
+
+        return $res;
+    }
+
+    private function getLista(){
+        $res = [];
+       
+        $medicinamodel = new ConsultaModel();
+        $medicinas = $medicinamodel->gettotal($this->$medicinamodel->getcodMedicina());
+
+        foreach ($medicinas as $medicina) {
+            array_push($res, $medicina->getcodMedicina());
+        }
+        $res = array_values(array_unique($res));
+
+        return $res;
+    }
+
+
+    private function getListSucursal(){
+        $res = [];
+        $listamedicinasucursal = new ListaMedicinaModel();
+        $sucursals = $listamedicinasucursal->getAllSucursal();
+
+        foreach ($sucursals as $sucursal) {
+            array_push($res, $sucursal->getcodigosucursal());
+        }
+        $res = array_values(array_unique($res));
+
+        return $res;
+    }
+    private function getListMedicinaporSucursal(){
+        $res = [];
+       
+        $listamedicinasucursal = new ListaMedicinaModel();
+        $codigo = $listamedicinasucursal->getcodMedicina();
+        
+        $sucursals = $listamedicinasucursal->getAllSucursalMedicina($codigo);
+
+        foreach ($sucursals as $sucursal) {
+            array_push($res, $sucursal->getcodigosucursal());
+        }
+        $res = array_values(array_unique($res));
+
+        return $res;
+    }
+
+
     function pantallaregistro()
     {
         $this->view->mensaje = "";
@@ -24,10 +140,10 @@ class Consulta extends Controller
       
         $codigo = $_POST['codMedicina'];
         $nombre    = $_POST['nombre'];
-        $cantidad  = $_POST['cantidad'];
+       // $cantidad  = $_POST['cantidad'];
        
 
-        if($this->model->insert(['codMedicina' => $codigo, 'nombre' => $nombre, 'cantidad' => $cantidad])){
+        if($this->model->insert(['codMedicina' => $codigo, 'nombre' => $nombre,'cantidad' => 0])){
             
            
             $this->view->mensaje = "Medicina Registrada correctamente";
@@ -59,21 +175,21 @@ class Consulta extends Controller
     { 
          $codigo = $_POST['codMedicina'];
         $nombre    = $_POST['nombre'];
-        $cantidad  = $_POST['cantidad'];
+       // $cantidad  = $_POST['cantidad'];
        
 
-        if($this->model->update(['codMedicina' => $codigo,'nombre' => $nombre,'cantidad' => $cantidad] )){
+        if($this->model->update(['codMedicina' => $codigo,'nombre' => $nombre] )){
             // actualizar alumno exito
             $medicina = new Medicina();
             $medicina->codigo = $codigo;
             $medicina->nombre = $nombre;
-            $medicina->cantidad = $cantidad;
+           // $medicina->cantidad = $cantidad;
   
             
             $this->view->medicina = $medicina;
            
             $this->view->mensaje = "Medicina actualizada correctamente";
-     
+
             $this->view->render('admin/detalle');
         }
         
@@ -91,7 +207,8 @@ class Consulta extends Controller
         $codMedicina = $param[0];
 
         if($this->model->delete($codMedicina)){
-           
+            $this->model->deletesucursal($codMedicina);
+            
             $mensaje = "Medicina eliminada correctamente";
         }else{
             

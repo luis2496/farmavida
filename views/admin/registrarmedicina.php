@@ -24,11 +24,7 @@
                 <label for="nombre">Nombre</label><br>
                 <input type="text" name="nombre"   required>
             </p>
-            <p>
-                <label for="cantidad">Cantidad</label><br>
-                <input type="text" name="cantidad"  required>
-            </p>
-            
+           
 
             <p>
             <input type="submit" value="Registrar">

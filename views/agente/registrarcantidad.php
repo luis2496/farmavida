@@ -24,9 +24,14 @@
                 <label for="codSucursal">Codigo Sucursal</label><br>
                 <input type="text" name="codSucursal"  value="<?php echo $this->medicinas->codigosucursal ?>" required>
             </p>
+            
             <p>
                 <label for="cantidad">Cantidad</label><br>
                 <input type="text" name="cantidad" value="<?php echo $this->medicinas->cantidad ?>" required>
+            </p>
+            <p>
+                <label for="cantidad2">Cantidad a agregar</label><br>
+                <input type="text" name="cantidad2"  required>
             </p>
 
             <p>

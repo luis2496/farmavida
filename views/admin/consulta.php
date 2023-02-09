@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,11 +26,11 @@
         <div class="panel-body">
           <table class="table table-bordered">
             <thead>
-              <tr>
+              <tr align="center">
                 <th>Código de la medicina</th>
                 <th>Nombre</th>
 
-                <th>Cantidad</th>
+                <th>Cantidad Total por Medicina</th>
 
 
               </tr>
@@ -47,24 +48,25 @@
 
                 ?>
 
-                <tr>
+                <tr align="center">
                   <td>
                     <?php echo $medicinas->codigo ?>
                   </td>
                   <td>
                     <?php echo $medicinas->nombre ?>
                   </td>
-                  <td>
+                  <td >
                     <?php echo $medicinas->cantidad ?>
                   </td>
                   <td><a href="<?php echo constant('URL') . 'consulta/verMedicina/' . $medicinas->codigo; ?>">Actualizar</a></td>
                   <td><a href="<?php echo constant('URL') . 'consulta/eliminar/' . $medicinas->codigo; ?>">Eliminar</a></td>
                 </tr>
                 
-
+                
               <?php } ?>
 
-              <a href="<?php echo constant('URL') .'consulta/pantallaregistro/' ; ?>">Registrar</a>
+              <a href="<?php echo constant('URL') .'consulta/pantallaregistro/' ; ?>"> Registrar </a>
+              <a href="<?php echo constant('URL') .'consulta/pantallaregistroporSucursal/' ; ?>"> Registrar </a>
 
             </tbody>
           </table>

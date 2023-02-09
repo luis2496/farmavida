@@ -63,7 +63,6 @@
                   <td><a href="<?php echo constant('URL') . 'sucursals/verSucursal/' . $sucursals->codSucursal; ?>">Actualizar</a></td>
                   <td><a href="<?php echo constant('URL') . 'sucursals/eliminar/' . $sucursals->codSucursal; ?>">Eliminar</a></td>
                 
-                  <td><a href="<?php echo constant('URL') . 'sucursals/verlistaMedicinas/' . $sucursals->codSucursal; ?>">Lista de Medicinas</a></td>
 
                 </tr>
                

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,14 +21,12 @@
                 <label for="codMedicina">Codigo de Medicina</label><br>
                 <input type="text" name="codMedicina"  value="<?php echo $this->medicina->codigo ?>" required>
             </p>
+           
             <p>
                 <label for="nombre">Nombre</label><br>
                 <input type="text" name="nombre"  value="<?php echo $this->medicina->nombre ?>" required>
             </p>
-            <p>
-                <label for="cantidad">Cantidad</label><br>
-                <input type="text" name="cantidad" value="<?php echo $this->medicina->cantidad ?>" required>
-            </p>
+           
 
             <p>
             <input type="submit" value="Actualizar">

@@ -65,17 +65,25 @@ class SucursalMedicina extends SessionController
         $codigomedicina = $_POST['codMedicina'];
         $codigosucursal = $_POST['codSucursal'];
         $cantidad = $_POST['cantidad'];
+        $cantidad2 = $_POST['cantidad2'];
+        $cantidadtotal = $cantidad + $cantidad2;
 
-
-        if ($this->model->update(['codMedicina' => $codigomedicina, 'cantidad' => $cantidad])) {
+        if ($this->model->update(['codMedicina' => $codigomedicina, 'codSucursal' => $codigosucursal,'cantidad' => $cantidadtotal])) {
            
             $medicinas = new Medicinas();
             $medicinas->codigomedicina = $codigomedicina;
             $medicinas->codigosucursal = $codigosucursal;
             $medicinas->cantidad = $cantidad;
-
-
+           
+          
             $this->view->medicinas = $medicinas;
+         
+         
+
+            $this->model->actualizarinventario(['codMedicina' => $codigomedicina,'cantidad' => $cantidad2]);
+           
+
+          
 
             $this->view->mensaje = "Cantidad actualizada correctamente";
 
@@ -84,6 +92,7 @@ class SucursalMedicina extends SessionController
             $this->view->mensaje = "No se pudo actualizar ";
 
         }
+
 
 
 

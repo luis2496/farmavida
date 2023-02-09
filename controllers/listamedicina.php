@@ -91,7 +91,25 @@ class ListaMedicina extends SessionController{
         echo json_encode($res);
     }
 
+    function eliminar($param = null)
+    {
+        $codMedicina = $param[0];
+      
+       
+       
+        if($this->model->delete($codMedicina)){
+       
 
+           
+            $mensaje = "Medicina eliminada correctamente";
+        }else{
+            
+            $mensaje = "No se pudo eliminar la Medicina";
+        }
+       $this->render();
+        
+        echo $mensaje;
+    }
     
 
 }

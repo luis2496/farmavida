@@ -38,6 +38,61 @@ class SucursalMedicinaModel extends Model
             echo $e;
         }
     }
+
+    public function actualizarinventario($item)
+    {
+
+        $query = $this->db->connect()->prepare('UPDATE medicina SET cantidad = cantidad+:cantidad  WHERE codMedicina = :codMedicina');
+        try {
+            $query->execute([
+                'codMedicina' => $item['codMedicina'],
+                'cantidad' => $item['cantidad'],
+
+
+            ]);
+            return true;
+        } catch (PDOException $e) {
+            echo $e;
+            return false;
+        }
+
+    }
+    public function actualizarinventario2($item)
+    {
+        
+        $query = $this->db->connect()->prepare('UPDATE sucursal_medicina SET cantidad = :cantidad WHERE  codSucursal = :codSucursal and codMedicina = :codMedicina');
+        try {
+            $query->execute([
+                'codMedicina' => $item['codMedicina'],
+                'codSucursal' => $item['codSucursal'],
+                'cantidad' => $item['cantidad']
+
+
+            ]);
+            return true;
+        } catch (PDOException $e) {
+            echo $e;
+            return false;
+        }
+    }
+public function actualizarinventario3($item){
+       
+    $query = $this->db->connect()->prepare('UPDATE sucursal_medicina SET cantidad = SUM(cantidad) + :cantidad  WHERE  codSucursal = :codSucursal and codMedicina = :codMedicina');
+    try{  $query->execute([
+        'codMedicina' => $item['codMedicina'],
+        'codSucursal' => $item['codSucursal'],
+        'cantidad'   => $item['cantidad']
+       
+     
+        ]);
+    return true;
+}catch(PDOException $e){
+    echo $e;
+    return false;
+}
+
+
+}
     public function getcod($codigosucursal)
     {
         try {
@@ -118,10 +173,11 @@ class SucursalMedicinaModel extends Model
     public function update($item)
     {
 
-        $query = $this->db->connect()->prepare('UPDATE sucursal_medicina  SET cantidad = :cantidad WHERE codMedicina = :codMedicina');
+        $query = $this->db->connect()->prepare('UPDATE sucursal_medicina  SET cantidad = :cantidad WHERE codSucursal = :codSucursal and codMedicina = :codMedicina');
         try {
             $query->execute([
                 'codMedicina' => $item['codMedicina'],
+                'codSucursal' => $item['codSucursal'],
                 'cantidad' => $item['cantidad']
 
             ]);

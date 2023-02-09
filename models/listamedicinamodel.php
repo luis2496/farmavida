@@ -12,12 +12,68 @@ class ListaMedicinaModel extends Model{
     {
         parent::__construct();
     }
+
+public function actualizarinventario($item){
+       
+        $query = $this->db->connect()->prepare('UPDATE medicina SET cantidad = cantidad - :cantidad  WHERE codMedicina = :codMedicina');
+        try{  $query->execute([
+            'codMedicina' => $item['codMedicina'],
+            'cantidad'   => $item['cantidad'],
+           
+         
+            ]);
+        return true;
+    }catch(PDOException $e){
+        echo $e;
+        return false;
+    }
+    }
+
     public function getAllSucursal(){
         $items = [];
 
         try{
             $query = $this->query('SELECT * FROM sucursal ');
 
+            while($p = $query->fetch(PDO::FETCH_ASSOC)){
+                $item = new ListaMedicinaModel();
+                $item->from($p); 
+                
+                array_push($items, $item);
+            }
+
+            return $items;
+
+        }catch(PDOException $e){
+            echo $e;
+        }
+    }
+    public function getAll($codsucu){
+        $items = [];
+        try{
+            $query = $this->prepare('SELECT medicina.codMedicina,nombre,sucursal_medicina.cantidad   FROM medicina  INNER JOIN sucursal_medicina  WHERE medicina.codMedicina = sucursal_medicina.codMedicina AND sucursal_medicina.codSucursal =:codsucu  ORDER BY medicina.codMedicina');
+            $query->execute(["codsucu" => $codsucu]);
+
+
+            while($p = $query->fetch(PDO::FETCH_ASSOC)){
+                $item = new ListaMedicinaModel();
+                $item->fromp($p);
+                array_push($items, $item);
+            }
+
+            return $items;
+
+        }catch(PDOException $e){
+            echo $e;
+        }
+    }
+
+    public function getAllSucursalMedicina($codsucu){
+        $items = [];
+
+        try{
+            $query = $this->prepare('SELECT * FROM sucursal_medicina where codMedicina=:codMedicina ');
+            $query->execute(["codMedicina" => $codsucu]);
             while($p = $query->fetch(PDO::FETCH_ASSOC)){
                 $item = new ListaMedicinaModel();
                 $item->from($p); 
@@ -68,26 +124,7 @@ class ListaMedicinaModel extends Model{
         return $array;
     }
 
-    public function getAll($codsucu){
-        $items = [];
-        try{
-            $query = $this->prepare('SELECT medicina.codMedicina,nombre,sucursal_medicina.cantidad   FROM medicina  INNER JOIN sucursal_medicina  WHERE medicina.codMedicina = sucursal_medicina.codMedicina AND sucursal_medicina.codSucursal =:codsucu  ORDER BY medicina.codMedicina');
-            $query->execute(["codsucu" => $codsucu]);
-
-
-            while($p = $query->fetch(PDO::FETCH_ASSOC)){
-                $item = new ListaMedicinaModel();
-                $item->fromp($p);
-                array_push($items, $item);
-            }
-
-            return $items;
-
-        }catch(PDOException $e){
-            echo $e;
-        }
-    }
-
+    
     
     
 
@@ -99,7 +136,23 @@ class ListaMedicinaModel extends Model{
        
     }
 
+    public function delete($cod)
+    {
 
+        $query = $this->db->connect()->prepare('DELETE FROM sucursal_medicina   WHERE  codMedicina = :cod');
+        try {
+            $query->execute([
+                'cod' => $cod,
+                
+
+
+            ]);
+            return true;
+        } catch (PDOException $e) {
+            echo $e;
+            return false;
+        }
+    }
 
     public function setcodMedicina($codMedicina)
     {

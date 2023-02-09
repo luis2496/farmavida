@@ -12,7 +12,7 @@ $sucursals = $this->d['sucursals'];
         <div id="history-container" class="container">
     
             <div id="history-options">
-                <h2>Lista de Medicinas</h2>
+                <h2>Lista de Medicinas Por Sucursal</h2>
                 <div id="filters-container">
                     
 
@@ -35,11 +35,11 @@ $sucursals = $this->d['sucursals'];
                     <thead>
                         <tr>
                         <th data-sort="codMedicina" width="35%">Codigo de la medicina</th>
-                       
+                        <th data-sort="codSucursal" width="35%">Codigo de la Sucursal</th>
                         <th data-sort="nombre">Nombre</th>
                         <th data-sort="cantidad">Cantidad</th>
                       
-                        <th>Acciones</th>
+                      
                         </tr>
                     </thead>
                     <tbody id="databody">
@@ -156,10 +156,11 @@ $sucursals = $this->d['sucursals'];
                 //total += item.amount;
                 databody.innerHTML += `<tr>
                         <td>${item.codMedicina}</td>
-                        
+                        <td>${item.codSucursal}</td>
                         <td>${item.nombre}</td>
-                        <td>$${item.cantidad}</td>
-                        <td><a href="http://localhost:8080/expense-app/expenses/delete/${item.id}">Eliminar</a></td>
+                        <td>${item.cantidad}</td>
+                        
+                       
                     </tr>`;
             });
         }
