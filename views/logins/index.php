@@ -7,6 +7,24 @@
     <title>Registro</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/login.css">
+    <STYLE TYPE="text/css" MEDIA=screen>
+    /* Aquí se escribe el CSS */
+<!--  
+  BODY  { background-image: url("views/images/fondo2.png");
+          color:#FFFFFF;
+          background-size: cover;
+         color: green; 
+         font-family: arial black,helvetica;
+         border-color: green ;
+         border-style: solid;
+       
+     }
+
+  h2 {border-width: 2px; border: solid; text-align: center; color:green}
+ 
+-->
+</STYLE>  
+    
     <style>
     .center-img {
         display: flex;
@@ -18,7 +36,7 @@
 <body>
 
 <div class="center-img">
-    <img src="images/Logo.jpg" width="270" height="135">
+    <img src="views/images/Logo.jpg" width="270" height="135">
 </div>
 
     <div class="container mt-5">
@@ -28,7 +46,11 @@
                 <div id="login-main">
                     <form action="<?php echo constant('URL'); ?>logins/authenticate" method="POST">
                         <div class="text-danger"><?php (isset($this->errorMessage))?  $this->errorMessage : '' ?></div>
-                        <h2 class="text-center mb-4">Iniciar sesión</h2>
+                        <h2 class="text-center mb-4">Bienvenidos </h2>
+                        <div class="center-img">
+                        <img src="views\images\7.png" alt="70" width="170"/>
+                        </div>
+                        <h3 class="text-center mb-4">Iniciar sesión</h3>
 
                         <div class="form-group">
                             <label for="username">Usuario</label>

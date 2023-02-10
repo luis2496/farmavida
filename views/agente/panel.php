@@ -8,8 +8,24 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  
-  
+  <STYLE TYPE="text/css" MEDIA=screen>
+    /* Aquí se escribe el CSS */
+<!--  
+  BODY  { background-image: url("views/images/1.1.png");
+          color:#FFFFFF;
+          background-size: cover;
+         color: green; 
+         font-family: arial black,helvetica;
+         border-color: green ;
+         border-style: solid;
+       
+     }
+
+  h2 {border-width: 2px; border: solid; text-align: center; color:green}
+ 
+-->
+</STYLE>   
+
   <style>
   .fakeimg {
     height: 200px;
@@ -25,7 +41,7 @@
 </head>
 <body>
 <div class="center-img">
-    <img src="images/Logo.jpg" width="270" height="135">
+    <img src="views/images/Logo.jpg" width="270" height="135">
 </div>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
