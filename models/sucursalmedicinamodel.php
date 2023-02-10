@@ -146,13 +146,14 @@ public function actualizarinventario3($item){
 
     }
 
-    public function getById($codMedicina)
+    public function getById($codMedicina,$codigosucursal)
     {
         $item = new Medicinas();
-        $query = $this->db->connect()->prepare('SELECT * FROM sucursal_medicina WHERE codMedicina = :codMedicina');
+        $query = $this->db->connect()->prepare('SELECT * FROM sucursal_medicina WHERE codSucursal=:codSucursal AND codMedicina = :codMedicina');
 
         try {
-            $query->execute(['codMedicina' => $codMedicina]);
+            $query->execute(['codMedicina' => $codMedicina,'codSucursal' => $codigosucursal]);
+           
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
 
                 $item->codigomedicina = $row['codMedicina'];

@@ -47,7 +47,8 @@ class SucursalMedicina extends SessionController
     {
         // var_dump($param);
         $codmedicina = $param[0];
-        $medicinas = $this->model->getById($codmedicina);
+        $codsucu = $this->user->getcodsucursal();
+        $medicinas = $this->model->getById($codmedicina,$codsucu);
 
 
         $this->view->medicinas = $medicinas;
