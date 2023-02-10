@@ -53,6 +53,55 @@ class ListaMedicina extends SessionController{
 
         return $res;
     }
+    function verMedicina($param = null)
+    {   
+        
+
+        // var_dump($param);
+        $codmedicina = $param[0];
+      
+       // $codsucu = $this->user->getcodsucursal();
+        $medicinas = $this->model->getById($codmedicina);
+
+
+        $this->view->medicinas = $medicinas;
+        $this->view->mensaje = "";
+        $this->view->render('admin/actualizarmedicinasucursal');
+    }
+
+    function actualizar()
+    {
+        $codMedicina = $_POST['codMedicina'];
+        $codigosucursal = $_POST['codSucursal'];
+        $nombre    = $_POST['nombre'];
+        $cantidad  = $_POST['cantidad'];
+       
+
+        if($this->model->update(['codMedicina' => $codMedicina,'codSucursal' => $codigosucursal,'nombre' => $nombre,'cantidad' => $cantidad] )){
+            // actualizar alumno exito
+            $medicina = new Lista();
+            $medicina->codMedicina = $codMedicina;
+            $medicina->codigosucursal = $codigosucursal;
+            $medicina->nombre = $nombre;
+            $medicina->cantidad = $cantidad;
+          
+            
+            $this->view->medicina = $medicina;
+           
+            $this->view->mensaje = "Medicina actualizada correctamente";
+
+            $this->view->render('admin/actualizarmedicinasucursal');
+        }
+        
+        else
+        {
+            $this->view->mensaje = "No se pudo actualizar ";
+           
+        }
+      
+    }
+
+
    
     // devuelve el JSON para las llamadas AJAX
     function getHistoryJSON(){

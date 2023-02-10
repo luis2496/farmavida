@@ -21,6 +21,11 @@
             "role" : "user"
         },
         {
+            "site" : "gestionmedicina", 
+            "access" : "private", 
+            "role" : "admin"
+        },
+        {
             "site" : "usuario", 
             "access" : "private", 
             "role" : "admin"

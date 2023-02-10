@@ -39,7 +39,7 @@ $sucursals = $this->d['sucursals'];
                         <th data-sort="nombre">Nombre</th>
                         <th data-sort="cantidad">Cantidad</th>
                       
-                      
+                       
                         </tr>
                     </thead>
                     <tbody id="databody">
@@ -155,12 +155,11 @@ $sucursals = $this->d['sucursals'];
             data.forEach(item => { 
                 //total += item.amount;
                 databody.innerHTML += `<tr>
-                        <td>${item.codMedicina}</td>
-                        <td>${item.codSucursal}</td>
-                        <td>${item.nombre}</td>
-                        <td>${item.cantidad}</td>
+                        <td name="codMedicina">${item.codMedicina}</td>
+                        <td name="codSucursal">${item.codSucursal}</td>
+                        <td name="nombre">${item.nombre}</td>
+                        <td name="cantidad">${item.cantidad}</td>
                         
-                       
                     </tr>`;
             });
         }

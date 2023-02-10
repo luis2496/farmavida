@@ -42,6 +42,7 @@
       <li class="nav-item">
       <a class="nav-link" href="<?php echo constant('URL'); ?>consulta">Medicinas</a>
       </li>
+      
       <a class="nav-link" href="<?php echo constant('URL'); ?>listamedicina">Lista de Medicinas</a>
       </li>
       

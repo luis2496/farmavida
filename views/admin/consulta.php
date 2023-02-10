@@ -66,7 +66,7 @@
               <?php } ?>
 
               <a href="<?php echo constant('URL') .'consulta/pantallaregistro/' ; ?>"> Registrar </a>
-              <a href="<?php echo constant('URL') .'consulta/pantallaregistroporSucursal/' ; ?>"> Registrar </a>
+              <a href="<?php echo constant('URL') .'consulta/pantallaregistroporSucursal/' ; ?>"> Suministrar </a>
 
             </tbody>
           </table>

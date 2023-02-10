@@ -1,6 +1,6 @@
 <?php
 //include_once 'SucursalMedicinaModel.php';
-
+include_once 'lista.php';
 class ListaMedicinaModel extends Model{
 
     private $codMedicina;
@@ -13,6 +13,47 @@ class ListaMedicinaModel extends Model{
         parent::__construct();
     }
 
+    
+    public function buscar(){
+        $items = [];
+        try{
+            $query = $this->db->connect()->query('SELECT medicina.codMedicina,codSucursal,nombre,sucursal_medicina.cantidad   FROM medicina  INNER JOIN sucursal_medicina  WHERE medicina.codMedicina = sucursal_medicina.codMedicina   ORDER BY medicina.codMedicina');
+           
+
+
+            while($p = $query->fetch(PDO::FETCH_ASSOC)){
+                $item = new ListaMedicinaModel();
+                $item->fromp($p);
+                array_push($items, $item);
+            }
+
+            return $items;
+
+        }catch(PDOException $e){
+            echo $e;
+        }
+    }
+    public function getById($codMedicina)
+    {
+        $item = new Lista();
+        $query = $this->db->connect()->prepare('SELECT * FROM sucursal_medicina WHERE  codMedicina = :codMedicina');
+
+        try {
+            $query->execute(['codMedicina' => $codMedicina]);
+           
+            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+
+                $item->codMedicina = $row['codMedicina'];
+                $item->codigosucursal = $row['codSucursal'];
+                $item->cantidad = $row['cantidad'];
+            }
+            return $item;
+        } catch (PDOException $e) {
+            return null;
+
+        }
+
+    }
 public function actualizarinventario($item){
        
         $query = $this->db->connect()->prepare('UPDATE medicina SET cantidad = cantidad - :cantidad  WHERE codMedicina = :codMedicina');
